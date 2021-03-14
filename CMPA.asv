@@ -33,11 +33,11 @@ ylabel('I');
 
 pI4 = polyfit(V,I,4);
 pI8 = polyfit(V,I,8);
-pIrand4 = polyfit(V,abs(Irand),4);
-pIrand8 = polyfit(V,abs(Irand),8);
+pIrand4 = polyfit(V,Irand,4);
+pIrand8 = polyfit(V,Irand,8);
 
 subplot(3,2,3)
-plot(V,I,'b');
+plot(V,Irand,'b');
 title('Fit4 and Fit8 plots');
 hold on
 plot(V,polyval(pI4,V),'-g');
@@ -48,23 +48,12 @@ xlabel('V');
 ylabel('I');
 
 subplot(3,2,4)
-semilogy(V,I,'b');
-title('Fit4 and Fit8 plots semilog');
+semilogy(V,Irand,'b');
+title('Fit4 and Fit8 plots semi log');
 hold on
 semilogy(V,polyval(pI4,V),'-g');
 hold on
-semilogy(V,polyval(pI8,V),'.r');
-legend('I','fit4','fit8');
-xlabel('V');
-ylabel('I');
-
-subplot(3,2,5)
-semilogy(V,abs(Irand),'b');
-title('Fit4 and Fit8 plots semilog');
-hold on
-semilogy(V,polyval(pIrand4,V),'-g');
-hold on
-semilogy(V,polyval(pIrand8,V),'.r');
+plot(V,polyval(pI8,V),'.r');
 legend('I','fit4','fit8');
 xlabel('V');
 ylabel('I');
@@ -83,7 +72,7 @@ f1fit = fit(V.',I.',f1);
 f2 = fittype('A.*(exp(1.2*x/25e-3)-1) + B.*x - C*(exp(1.2*(-(x+D))/25e-3)-1)');
 f2fit = fit(V.',I.',f2);
 
-subplot(3,2,6)
+subplot(3,2,5)
 plot(V,fofit(I),'b');
 title('Non linear curve fitting')
 hold on
